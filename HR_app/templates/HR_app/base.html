@@ -1,0 +1,238 @@
+{% load static %}
+{% block header %}
+<header id="topnav">
+
+    <!-- Topbar Start -->
+    <div class="navbar-custom">
+        <div class="container-fluid">
+            <ul class="list-unstyled topnav-menu float-right mb-0">
+
+                <li class="dropdown notification-list">
+                    <!-- Mobile menu toggle-->
+                    <a class="navbar-toggle nav-link">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </a>
+                    <!-- End mobile menu toggle-->
+                </li>
+
+                <li class="d-none d-sm-block">
+                    <form class="app-search">
+                        <div class="app-search-box">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <button class="btn" type="submit">
+                                        <i class="fe-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <img src="{% static 'images/users/user-1.jpg' %}" alt="user-image" class="rounded-circle">
+                        {% if request.session.role == 'Admin' %}
+                        <span class="pro-user-name ml-1">
+                            {{request.session.aemail}} <i class="mdi mdi-chevron-down"></i> 
+                        </span>
+                        {% else %}
+                        <span class="pro-user-name ml-1">
+                            {{request.session.fname}} <i class="mdi mdi-chevron-down"></i> 
+                        </span>
+                        {% endif %}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow m-0">Welcome !</h6>
+                        </div>
+
+                        <!-- item-->
+                        <a href="{% url 'Profile' %}" class="dropdown-item notify-item">
+                            <i class="fe-user"></i>
+                            <span>My Account</span>
+                        </a>
+
+                        <!-- item-->
+                        
+
+                        <!-- item-->
+                        <a href="{% url 'lock-screen' %}" class="dropdown-item notify-item">
+                            <i class="fe-lock"></i>
+                            <span>Lock Screen</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- item-->
+                        <a href="{% url 'LogOut' %}" class="dropdown-item notify-item">
+                            <i class="fe-log-out"></i>
+                            <span>Logout</span>
+                        </a>
+
+                    </div>
+                </li>
+
+            </ul>
+
+            <!-- LOGO -->
+            <div class="logo-box">
+                <h2 style="color: #ff5b5b; font-family: Verdana, Geneva, Tahoma, sans-serif;margin-top: 18px;display: flex;">HRMS System</h2>
+            </div>
+
+            <div class="clearfix"></div>
+        </div> <!-- end container-fluid-->
+    </div>
+    <!-- end Topbar -->
+
+    <div class="topbar-menu">
+        <div class="container-fluid">
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                {% if request.session.role == 'Admin' %}
+                <ul class="navigation-menu">
+
+                    <li class="has-submenu">
+                        <a href="{% url 'index' %}"><i class="fa fa-desktop"></i>Dashboard</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="{% url 'Addhr' %}"><i class="fa fa-plus"></i>Add HR</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="index.html"><i class="mdi mdi-view-dashboard"></i>My Request</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="index.html"><i class="fa fa-hourglass-end"></i>All Request</a>
+                    </li>
+                    
+                </ul>
+                {% elif request.session.role == 'Hr' %}
+                <ul class="navigation-menu">
+
+                    <li class="has-submenu">
+                        <a href="{% url 'index' %}"><i class="fa fa-desktop"></i>Dashboard</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="{% url 'Addemp' %}"><i class="fa fa-plus"></i>Add Employee</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a><i class="fa fa-paper-plane"></i>Send Request</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'hr-shifte-request' %}">Shift Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hr-leave-request' %}">Leave Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hr_attendance-request' %}">Attendance Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hr-expense-request' %}">Expense Request</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                        </ul>    
+                    </li>
+                    <li class="has-submenu">
+                        <a><i class="fa fa-hourglass-end"></i>All Request</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'hr-shifte' %}">Shift Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hr-leave' %}">Leave Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hr-attendance' %}">Attendance Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'hr-expense' %}">Expense Request</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="{% url 'emp-bank' %}"><i class="fa fa-university"></i>Bank Details</a>
+                    </li>
+                </ul>
+                {% elif request.session.role == 'EMPLOYEE' %}
+                <ul class="navigation-menu">
+
+                    <li class="has-submenu">
+                        <a href="{% url 'index' %}"><i class="fa fa-desktop"></i>Dashboard</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a><i class="fa fa-paper-plane"></i>Send Request</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'emp-shifte-request' %}">Shift Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'emp-leave-request' %}">Leave Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'emp-attendance-request' %}">Attendance Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'emp-expense-request' %}">Expense Request</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a><i class="fa fa-hourglass-end"></i>All Request</a>
+                        <ul class="submenu megamenu">
+                            <li>
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'table-shifte' %}">Shift Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'table-leave' %}">Leave Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'table-attendance' %}">Attendance Request</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'table-expense' %}">Expense Request</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="{% url 'emp-bank' %}"><i class="fa fa-university"></i>Bank Details</a>
+                    </li>
+                </ul>
+                {% endif %}
+                <!-- End navigation menu -->
+
+                <div class="clearfix"></div>
+            </div>
+            <!-- end #navigation -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end navbar-custom -->
+
+</header>
+{% endblock %}

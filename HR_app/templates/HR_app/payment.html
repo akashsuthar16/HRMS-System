@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Payment | HRMS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+        <!-- Bootstrap Css -->
+        <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'css/app.min.css' %}" id="app-stylesheet" rel="stylesheet" type="text/css" />
+
+    </head>
+
+
+    <body class="authentication-bg">
+
+        <div class="account-pages mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        <div class="text-center">
+                            <a href="index.html" class="logo">
+                                <img src="{% static 'images/logo-light.png' %}" alt="" height="22" class="logo-light mx-auto">
+                               <img src="{% static 'images/logo-dark.png' %}" alt="" height="22" class="logo-dark mx-auto">
+                            </a>
+                            <p class="text-muted mt-2 mb-4">Responsive Admin Dashboard</p>
+                        </div>
+                        <div class="card">
+
+                            <div class="card-body p-4">
+                                
+                                <div class="text-center mb-4">
+                                    <h2 style="text-align: center;">Enter Amount</h2>
+                                </div>
+                                {% if request.session.role == 'Admin' %}
+                                <form action="{% url 'paty' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                                    <div class="form-group mb-3">
+                                        <label>Amount</label>
+                                        <input class="form-control" type="text" required=""  name="amt" placeholder="Enter your password" pattern="[0-9]+([\.,][0-9]+)?">
+                                    </div>
+
+                                    <div class="form-group mb-0 text-center">
+                                        <input class="btn btn-primary btn-block" type="button" value="Pay" id="rzp-button1">
+                                    </div>
+
+                                </form>
+                                {% elif request.session.role == 'Hr' %}
+                                <form action="#" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                                    <div class="form-group mb-3">
+                                        <label>Amount</label>
+                                        <input class="form-control" type="text" required=""  name="amt" placeholder="Enter your password" pattern="[0-9]+([\.,][0-9]+)?">
+                                    </div>
+
+                                    <div class="form-group mb-0 text-center">
+                                        <input class="btn btn-primary btn-block" type="button" value="Pay" id="rzp-button1">
+                                    </div>
+
+                                </form>
+                                {% endif %}
+                            </div> <!-- end card-body -->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <p class="text-muted">Not Pay ? return <a href="{% url 'hr-table-expense' %}" class="text-dark ml-1"><b>Back</b></a></p>
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end page -->
+    
+
+        <!-- Vendor js -->
+        <script src="{% static 'js/vendor.min.js' %}"></script>
+
+        <!-- App js -->
+        <script src="{% static 'js/app.min.js' %}"></script>
+        <!-- Payment -->
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "rzp_test_c9INlCRgs3if3b", // Enter the Key ID generated from the Dashboard
+            "amount": "{{request.session.amt}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "testing.in",
+            "description": "Order Payment",
+            "image": "/static/images/200.jpg", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response){
+                alert("Payment succesfull..");
+            },
+            "prefill": {
+                "name": "HRMS",
+                "email": "hrms12@gmail.com",
+                "contact": "9104613555"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response){
+                alert("Payment Failed! If amount is deducted it will be credited soon.");										        
+        });
+        document.getElementById('rzp-button1').onclick = function(e){
+            rzp1.open();
+            e.preventDefault();
+        }
+    </script>      
+    </body>
+</html>

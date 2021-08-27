@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Lock Screen | HRMS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+        <!-- Bootstrap Css -->
+        <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'css/app.min.css' %}" id="app-stylesheet" rel="stylesheet" type="text/css" />
+
+    </head>
+
+
+    <body class="authentication-bg">
+
+        <div class="account-pages mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        <div class="text-center">
+                            <div class="logo">
+                                
+                                <h2 style="color: #ff5b5b; font-family: Verdana, Geneva, Tahoma, sans-serif;margin-top: 18px;display: flex; margin-right: 30px;" align ="center ">HRMS System</h2>
+                            </div>
+                                
+                        </div>
+                        <div class="card">
+
+                            <div class="card-body p-4">
+                                
+                                <div class="text-center mb-4">
+                                    <h4 class="text-uppercase mt-0 mb-4">Welcome Back</h4>
+                                    <img src="{% static 'images/users/user-1.jpg' %}" width="88" alt="user-image" class="rounded-circle img-thumbnail">
+                                    <h2 style="text-align: center;">{{request.session.fname}}</h2>
+                                    {% if request.session.role == 'Admin' %}
+                                    <h2 style="text-align: center;">Admin</h2>
+                                    {% endif %}
+                                </div>
+
+                                <form action="{% url 'lock' %}" method="POST">{% csrf_token %}
+
+                                    <div class="form-group mb-3">
+                                        <input class="form-control" type="email" name="email" value="" hidden placeholder="Enter your password">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="password">Password</label>
+                                        <input class="form-control" type="password" required="" id="password"  name="psw" placeholder="Enter your password">
+                                    </div>
+
+                                    <div class="form-group mb-0 text-center">
+                                        <button class="btn btn-primary btn-block" type="submit"> Log In </button>
+                                    </div>
+
+                                </form>
+    
+                            </div> <!-- end card-body -->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <p class="text-muted">Not you? return <a href="{% url 'login' %}" class="text-dark ml-1"><b>Sign In</b></a></p>
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end page -->
+    
+
+        <!-- Vendor js -->
+        <script src="{% static 'js/vendor.min.js' %}"></script>
+
+        <!-- App js -->
+        <script src="{% static 'js/app.min.js' %}"></script>
+        
+    </body>
+</html>

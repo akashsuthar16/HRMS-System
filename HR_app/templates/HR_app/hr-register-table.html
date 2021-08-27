@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>HR Details | HRMS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+        <!-- third party css -->
+        <link href="{% static 'libs/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'libs/datatables/responsive.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'libs/datatables/buttons.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'libs/datatables/select.bootstrap4.css' %}" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
+
+
+        <!-- Bootstrap Css -->
+        <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-stylesheet" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'css/app.min.css' %}" id="app-stylesheet" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body data-layout="horizontal" data-topbar="dark">
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Navigation Bar-->
+            {% include "HR_app/base.html" %}
+            <!-- End Navigation Bar-->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h4 class="page-title">HR Details</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                                            <li class="breadcrumb-item active">HR Details</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card-box">
+                                    <h4 class="mt-0 header-title">HR Details</h4>
+                                    
+
+                                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
+                                        <thead>
+                                        <tr>
+                                            
+                                            <th>First Name</th>
+                                            <th>Lirst Name</th>
+                                            <th>Birthaday</th>
+                                            <th>Phone</th>
+                                            <th>Gender</th>
+                                            <th>Email</th>
+                                            <th>Address</th>
+                                            <th>Action</th>
+                                            
+                                        </tr>
+                                        </thead>
+
+
+                                        <tbody>
+                                        {% for i in gethr %}
+                                        <tr>
+                                            <td>{{i.fname}}</td>
+                                            <td>{{i.lname}}</td>
+                                            <td>{{i.bdate}}</td>
+                                            <td>{{i.phone}}</td>
+                                            <td>{{i.gender}}</td>
+                                            <td>{{i.admin.email}}</td>
+                                            <td>{{i.address}}</td>
+                                            {% if i.active == 'Active' %}
+                                            <td><p><input type="radio" checked value="Active">&nbsp;&nbsp;Active</p>
+                                                <p><input type="radio" value="De-Active">&nbsp;&nbsp;De-Active</p>
+                                            </td>
+                                            {% else %}
+                                            <td><p><input type="radio" checked value="De-Active">De-Active</p>
+                                                <p><input type="radio" value="Active">Active</p></td>
+                                            
+                                            {% endif %}
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+
+                        
+
+
+
+
+                        
+                    </div> <!-- container-fluid -->
+
+                </div> <!-- content -->
+
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                               2016 - 2020 &copy; Adminto theme by <a href="">Coderthemes</a> 
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-md-right footer-links d-none d-sm-block">
+                                    <a href="javascript:void(0);">About Us</a>
+                                    <a href="javascript:void(0);">Help</a>
+                                    <a href="javascript:void(0);">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div class="rightbar-title">
+                <a href="javascript:void(0);" class="right-bar-toggle float-right">
+                    <i class="mdi mdi-close"></i>
+                </a>
+                <h4 class="font-16 m-0 text-white">Theme Customizer</h4>
+            </div>
+            <div class="slimscroll-menu rightbar-content">
+
+                <div class="p-3">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Customize </strong> the overall color scheme, layout, etc.
+                    </div>
+                    <div class="mb-2">
+                        <img src="{% static 'images/layouts/light.png' %}" class="img-fluid img-thumbnail" alt="">
+                    </div>
+                    <div class="custom-control custom-switch mb-3">
+                        <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked />
+                        <label class="custom-control-label" for="light-mode-switch">Light Mode</label>
+                    </div>
+    
+                    <div class="mb-2">
+                        <img src="{% static 'images/layouts/dark.png' %}" class="img-fluid img-thumbnail" alt="">
+                    </div>
+                    <div class="custom-control custom-switch mb-3">
+                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch" data-bsStyle="{% static 'css/bootstrap-dark.min.css' %}" 
+                            data-appStyle="{% static 'css/app-dark.min.css' %}" />
+                        <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
+                    </div>
+    
+                    <div class="mb-2">
+                        <img src="{% static 'images/layouts/rtl.png' %}" class="img-fluid img-thumbnail" alt="">
+                    </div>
+                    <div class="custom-control custom-switch mb-3">
+                        <input type="checkbox" class="custom-control-input theme-choice" id="rtl-mode-switch" data-appStyle="{% static 'css/app-rtl.min.css' %}" />
+                        <label class="custom-control-label" for="rtl-mode-switch">RTL Mode</label>
+                    </div>
+
+                    <div class="mb-2">
+                        <img src="{% static 'images/layouts/dark-rtl.png' %}" class="img-fluid img-thumbnail" alt="">
+                    </div>
+                    <div class="custom-control custom-switch mb-5">
+                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-rtl-mode-switch" data-bsStyle="{% static 'css/bootstrap-dark.min.css' %}" 
+                            data-appStyle="{% static 'css/app-dark-rtl.min.css' %}" />
+                        <label class="custom-control-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
+                    </div>
+
+                    <a href="https://1.envato.market/k0YEM" class="btn btn-danger btn-block mt-3" target="_blank"><i class="mdi mdi-download mr-1"></i> Download Now</a>
+                </div>
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <a href="javascript:void(0);" class="right-bar-toggle demos-show-btn">
+            <i class="mdi mdi-cog-outline mdi-spin"></i> &nbsp;Choose Demos
+        </a>
+
+        <!-- Vendor js -->
+        <script src="{% static 'js/vendor.min.js' %}"></script>
+        
+        <!-- third party js -->
+        <script src="{% static 'libs/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/dataTables.bootstrap4.js' %}"></script>
+        <script src="{% static 'libs/datatables/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/responsive.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/dataTables.buttons.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/buttons.html5.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/buttons.flash.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/buttons.print.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/dataTables.keyTable.min.js' %}"></script>
+        <script src="{% static 'libs/datatables/dataTables.select.min.js' %}"></script>
+        <script src="{% static 'libs/pdfmake/pdfmake.min.js' %}"></script>
+        <script src="{% static 'libs/pdfmake/vfs_fonts.js' %}"></script>
+        <!-- third party js ends -->
+
+        <!-- Datatables init -->
+        <script src="{% static 'js/pages/datatables.init.js' %}"></script>
+
+        <!-- App js -->
+        <script src="{% static 'js/app.min.js' %}"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,72 @@
+from django.contrib import admin
+from django.urls import path,include
+from . import views
+urlpatterns = [
+    path("",views.loginpage,name="login"),
+    path('lock-screen/',views.locks,name="lock-screen"),
+    path('lock/',views.lockscreen,name="lock"),
+    path("forgot/",views.forgot,name="Forgot"),
+    path("newpws/",views.newpaswd,name="Newpws"),
+    path("otpsend/",views.Send_OTP,name="Sendotp"),
+    path("verify/",views.verifyotp_pws,name="Verify"),
+    path("Logout/",views.logout,name='LogOut'),
+    path("login-user/",views.login,name="Loginuser"),
+    path("addhr/",views.newhr,name="Addhr"),
+    path("addemp/",views.empl,name="Addemp"),
+    path("Register-hr-emp/",views.registerhr_emp,name="register"),
+    path("profile-page/",views.profile,name="Profile"),
+    path("emp_profile_update/",views.emp_profile,name="Emp_profile_update"),
+    path("hr_profile_update/",views.hr_profile,name="hr_profile_update"),
+    path("index-page/",views.indexpage,name="index"),
+    # Hr all table
+    path('shiftreq-request/',views.shiftreq,name='shiftreq'),
+    path("leave-request/",views.leavereq,name="Leave"),
+    path("attendance-request/",views.attendancereq,name="Attendance"),
+    path('expense-request/',views.expensereq,name='expense'),
+    path("hr-leave-request/",views.hr_leave,name="hr-leave-request"),
+    path("hr-shifte-request/",views.hr_shifte,name="hr-shifte-request"),
+    path("hr_attendance-request/",views.hr_attendance,name="hr_attendance-request"),
+    path("hr-expense-request/",views.hr_expense,name="hr-expense-request"),
+    path("emp_table_shifte/",views.emp_table_shifte,name="emp-table-shifte"),
+    path('emp-table-leave/',views.emp_table_leave,name="emp-table-leave"),
+    path('emp-table-attendance/',views.emp_table_attendance,name="emp-table-attendance"),
+    path('emp-table-expense/',views.emp_table_expense,name="emp-table-expense"),
+    path('emp-detail/',views.emp_detail,name="emp-detail"),
+    path('hr-shifte/',views.hr_shiftereq,name='hr-shifte'),
+    path('hr-leave/',views.hr_leavereq,name='hr-leave'),
+    path('hr-attendance/',views.hr_attendancereq,name='hr-attendance'),
+    path('hr-expense/',views.hr_expensereq,name='hr-expense'),
+    path('hr-bank-detail/',views.hr_bank_detail,name="hr-bank-detail"),
+    path('emp-bank-table/',views.emp_bank_table,name="emp-bank-table"),
+
+    # employee table
+    path("emp-shifte-request/",views.emp_shift,name="emp-shifte-request"),
+    path("emp-leave-request/",views.emp_leave,name="emp-leave-request"),
+    path("emp-attendance-request/",views.emp_attendance,name="emp-attendance-request"),
+    path("emp-expense-request/",views.emp_expense,name="emp-expense-request"),
+    path('empshifte/',views.empshifte,name="emp-shifte"),
+    path('emp-leave/',views.empleave,name="emp-leave"),
+    path('emp-attendance/',views.empattendance,name="emp-attendance"),
+    path('emp-expense/',views.empexpense,name="emp-expense"),
+    path('table-shifte/',views.table_shifte,name="table-shifte"),
+    path('table-leave/',views.table_leave,name="table-leave"),
+    path('table-attendance/',views.table_attendance,name="table-attendance"),
+    path('table-expense/',views.table_expense,name="table-expense"),
+    path('emp-bank/',views.emp_bank,name="emp-bank"),
+    path('emp-bank-detail/',views.emp_bank_detail,name="emp-bank-detail"),
+
+    # Admin table
+    path('hr-table-shifte/',views.hr_table_shifte,name="hr-table-shifte"),
+    path('hr-table-leave/',views.hr_table_leave,name="hr-table-leave"),
+    path('hr-table-attendance/',views.hr_table_attendance,name="hr-table-attendance"),
+    path('hr-table-expense/',views.hr_table_expense,name="hr-table-expense"),
+    path('hr-detail/',views.hr_detail,name="hr-detail"),
+    path('hr-bank-details-admin/',views.hr_bank,name="hr-bank-details-admin"),
+    path('change-status/<str:st>/',views.ChngHrAttenReqStatus,name="Change-status"),
+    path('change-leave-status/',views.ChngHrLeaveReqStatus,name="Change-leave-status"),
+
+    # Payment Section
+    path("pay/",views.pay,name='paty'),
+    path("Payment/",views.paymentpage,name="paymentpage"),
+
+]
